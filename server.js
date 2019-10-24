@@ -1,13 +1,20 @@
 //-----------------------------------------------------------Import dependencies and intialing variables
 const express = require("express");
 const http= require("http");
+const mongoose= require("mongoose");
+const config=require("./config/config")
 // const https= require("https");
 
-//Create Express App Object
+//--Create Express App Object
 const app = express();
-// Initialize port variable
-const portHttp = process.env.PORT || "5000";
-// const portHttps = process.env.PORT || "8000";
+//--Initialize port variable
+
+//-----------------------------------------------------------Connecting DB
+
+mongoose
+  .connect(config.db.mongoUrl, config.db.connectOptions)
+  .then(() => console.log("Db Connected"))
+  .catch(err => console.log("Db connection Failed: ", err));
 
 
 //-----------------------------------------------------------Routes
@@ -16,10 +23,9 @@ app.get("/", (req, res) => {
 });
 
 
-
 //-----------------------------------------------------------Start the backend server
-http.createServer(app).listen(portHttp, () => {
-  console.log(`Http App started on the port: ${portHttp}`);
+http.createServer(app).listen(config.app.port, () => {
+  console.log(`Http App started on the port: ${config.app.port}`);
 });
 
 // https.createServer({}, app).listen(portHttps, () => {

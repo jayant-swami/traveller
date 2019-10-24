@@ -1,0 +1,2 @@
+MONGO_URL=mongodb+srv://app_user:QA4app_user@clusterqa-hicdk.gcp.mongodb.net/product_cart?retryWrites=true&w=majority
+JWT_SECRET=TingDingTding
