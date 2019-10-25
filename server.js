@@ -2,7 +2,11 @@
 const express = require("express");
 const http= require("http");
 const mongoose= require("mongoose");
-const config=require("./config/config")
+const config=require("./config/config");
+const usersRouter=require("./routes/api/usersRouter");
+const authRouter=require("./routes/api/authRouter");
+const profileRouter=require("./routes/api/profileRouter");
+const postsRouter=require("./routes/api/postsRouter");
 // const https= require("https");
 
 //--Create Express App Object
@@ -15,6 +19,14 @@ mongoose
   .connect(config.db.mongoUrl, config.db.connectOptions)
   .then(() => console.log("Db Connected"))
   .catch(err => console.log("Db connection Failed: ", err));
+
+//-----------------------------------------------------------Routes
+app.use(express.json());
+app.use("/api/users",usersRouter);
+app.use("/api/auth",authRouter);
+app.use("/api/posts",postsRouter);
+app.use("/api/profile",profileRouter);
+
 
 
 //-----------------------------------------------------------Routes
