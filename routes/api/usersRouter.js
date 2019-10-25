@@ -4,6 +4,7 @@ const userModel = require("../../models/userModel");
 const bcrypt = require("bcrypt");
 const config = require("../../config/config");
 const jwt = require("jsonwebtoken");
+const tokenAuth= require("../../middleware/tokenAuth");
 
 router.post("/register", userValidation, (req, res) => {
   if (req.validation.status === "SUCCESS") {
@@ -124,5 +125,9 @@ router.post("/login", (req, res) => {
       });
   }
 });
+
+router.get("/", tokenAuth,(req,res)=>{
+    res.send(req.authentication);
+})
 
 module.exports = router;
