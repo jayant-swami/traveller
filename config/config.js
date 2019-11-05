@@ -6,7 +6,7 @@ const config = {
  },
  db: {
     mongoUrl: process.env.MONGO_URL,
-    connectOptions: {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
+    connectOptions: {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true ,useFindAndModify: false }
  },
  jwt: {
      jwtSecret: process.env.JWT_SECRET

@@ -1,11 +1,13 @@
 const router = require("express").Router();
 const userValidation = require("../../middleware/userValidation");
 const userModel = require("../../models/userModel");
+const profileModel = require("../../models/profileModel");
 const bcrypt = require("bcrypt");
 const config = require("../../config/config");
 const jwt = require("jsonwebtoken");
-const tokenAuth= require("../../middleware/tokenAuth");
+const tokenAuth = require("../../middleware/tokenAuth");
 
+// Register a user
 router.post("/register", userValidation, (req, res) => {
   if (req.validation.status === "SUCCESS") {
     let newUser = userModel({
@@ -25,13 +27,34 @@ router.post("/register", userValidation, (req, res) => {
         newUser.password = hash;
         newUser
           .save()
-          .then(val => {
-            console.log(val);
-            res.send(req.validation);
+          .then(newUserVal => {
+            console.log(newUserVal);
+            let newProfile = profileModel({
+              user_id: newUserVal._id,
+              user_name: newUserVal.user_name,
+              first_name: newUserVal.first_name,
+              last_name: newUserVal.last_name,
+              bio: "",
+              dob: "",
+              location: "",
+              social: [],
+              places_travelled: []
+            });
+
+            newProfile
+              .save()
+              .then(newProfileVal => {
+                console.log(newProfileVal);
+                res.send(req.validation);
+              })
+              .catch(err => {
+                console.log(err);
+                res.send("Error: An Error has Occured while creating Profile");
+              });
           })
           .catch(err => {
             console.log(err);
-            res.send("An Error has Occured");
+            res.send("Error: An Error has Occured while creating User");
           });
       }
     });
@@ -40,6 +63,7 @@ router.post("/register", userValidation, (req, res) => {
   }
 });
 
+// Login a user
 router.post("/login", (req, res) => {
   let response = {
     status: "SUCCESS",
@@ -97,7 +121,7 @@ router.post("/login", (req, res) => {
                         (response.user.first_name = val.first_name),
                         (response.user.last_name = val.last_name),
                         (response.user.added_on = val.added_on);
-                        res.send(response);
+                      res.send(response);
                     }
                   }
                 );
@@ -116,18 +140,29 @@ router.post("/login", (req, res) => {
         } else {
           response.error.user_name = "User not registered";
           response.status = "FAIL";
-          res.send(response)
+          res.send(response);
         }
       })
-      .catch((err)=> {
-          console.log(err);
-          res.status(500).send("Server Error: An error occured while user search")
+      .catch(err => {
+        console.log(err);
+        res
+          .status(500)
+          .send("Server Error: An error occured while user search");
       });
   }
 });
 
-router.get("/", tokenAuth,(req,res)=>{
-    res.send(req.authentication);
-})
+// List Users
+router.get("/", (req, res) => {
+  userModel
+    .find({}, "user_name first_name last_name added_on -_id")
+    .then(usersVal => {
+      res.send(usersVal);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(400).send("Error: An error occured while getting user list");
+    });
+});
 
 module.exports = router;

@@ -32,7 +32,7 @@ const tokenAuth = (req, res, next) => {
         userModel
           .findOne(
             { _id: decoded.id },
-            "user_name email first_name last_name added_on"
+            "_id user_name email first_name last_name added_on"
           )
           .then(userVal => {
             if (userVal) {
