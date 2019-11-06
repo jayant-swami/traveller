@@ -6,7 +6,7 @@ const tokenAuth = (req, res, next) => {
   let authentication = {
     status: "SUCCESS",
     user: {
-      id: "",
+      id: null,
       user_name: "",
       email: "",
       first_name: "",

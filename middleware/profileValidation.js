@@ -15,4 +15,4 @@ const profileValidation = (req, res, next) => {
 
 };
 
-module.exports = userValidation;
+module.exports = profileValidation;

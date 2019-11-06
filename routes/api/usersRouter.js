@@ -6,11 +6,13 @@ const bcrypt = require("bcrypt");
 const config = require("../../config/config");
 const jwt = require("jsonwebtoken");
 const tokenAuth = require("../../middleware/tokenAuth");
+const mongoose=require("mongoose");
 
 // Register a user
 router.post("/register", userValidation, (req, res) => {
   if (req.validation.status === "SUCCESS") {
     let newUser = userModel({
+      _id: new mongoose.Types.ObjectId(),
       user_name: req.body.user_name,
       email: req.body.email,
       password: req.body.password,
