@@ -1,22 +1,27 @@
-.App {
-  text-align: center;
+.App{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    align-items: center;
+    justify-content: center;
+    background-color: whitesmoke;
+    height: 100%;
+    margin:0px;
 }
 
-.App-logo {
-  height: 40vmin;
+/* .Nav{
+    grid-column: 2;
+    grid-row: 1;
+} */
+
+.Login-Container{
+    grid-column: 1 / 4;
+    grid-row: 1;
+    margin:auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.Register-Container{
+    grid-column: 1 / 4;
+    grid-row: 1;
+    margin:auto;
 }
 
-.App-link {
-  color: #09d3ac;
-}
