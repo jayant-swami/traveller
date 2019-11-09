@@ -11,7 +11,7 @@ const Login = () => {
     <div className="Login-Container">
       <div className="Login">
         <div className="Login-Head">
-          <h1>traveller</h1>
+          <h1><Link className="Login-Head-Link" to="/">traveller</Link></h1>
         </div>
         <form>
           <div className="Login-Form-Element">

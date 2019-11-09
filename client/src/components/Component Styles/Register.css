@@ -76,15 +76,21 @@
 .Register-Head {
   text-align: center;
   vertical-align: middle;
-  text-shadow: 2px 2px 4px lavender;
-  font-family: Brush Script MT, Brush Script Std, cursive;
-  font-size: 40px;
-  color: purple;
+
+
 }
 
 .Register-Head h1 {
   margin: 0px;
   opacity: 0.8;
+}
+
+.Register-Head-Link{
+  font-size: 80px;
+  color: purple;
+  text-decoration: none;
+  text-shadow: 2px 2px 4px lavender;
+  font-family: Brush Script MT, Brush Script Std, cursive;
 }
 
 .Register-Form-Element {

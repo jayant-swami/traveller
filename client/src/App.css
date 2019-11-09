@@ -25,3 +25,8 @@
     margin:auto;
 }
 
+.Landing-Container{
+    grid-column: 1 / 4;
+    grid-row: 1;
+    margin:auto;
+}

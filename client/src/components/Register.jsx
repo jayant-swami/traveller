@@ -10,7 +10,7 @@ const Register = () => {
     <div className="Register-Container">
       <div className="Register">
         <div className="Register-Head">
-          <h1>traveller</h1>
+        <h1><Link className="Register-Head-Link" to="/">traveller</Link></h1>
         </div>
         <form>
           <div className="Register-Form-Element">

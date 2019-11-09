@@ -75,10 +75,8 @@
 .Login-Head {
   text-align: center;
   vertical-align: middle;
-  text-shadow: 2px 2px 4px lavender;
-  font-family: Brush Script MT, Brush Script Std, cursive;
-  font-size: 40px;
-  color: purple;
+
+
 }
 
 .Login-Head h1 {
@@ -86,13 +84,21 @@
   opacity: 0.8;
 }
 
+.Login-Head-Link{
+  font-size: 80px;
+  color: purple;
+  text-decoration: none;
+  text-shadow: 2px 2px 4px lavender;
+  font-family: Brush Script MT, Brush Script Std, cursive;
+}
+
 .Login-Form-Element {
   background-color: whitesmoke;
   padding: 4px 20px 4px 6px;
   border-radius: 16px;
   min-width: 350px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .Login-Form-Element label {
   background-color: whitesmoke;
