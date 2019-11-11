@@ -72,6 +72,8 @@ const manageUserActions = {
         await timeout(1500);
         dispatch({ type: "TOGGLE_SPINNER", payload: false });
         dispatch({ type: "LOGIN", payload: res.data });
+
+        localStorage.setItem('token',res.data.token);
       } else {
         dispatch({
           type: "CHANGE_SPINNER_TEXT",

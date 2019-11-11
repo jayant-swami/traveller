@@ -19,7 +19,7 @@ const initialState = {
   },
 
   authentication: {
-    token: "",
+    token: localStorage.getItem('token'),
     user: {
       user_name: "",
       email: "",
