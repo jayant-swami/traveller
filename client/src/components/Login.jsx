@@ -18,7 +18,7 @@ const Login = () => {
             <label>User Name</label>
             <input
               type="text"
-              required="true"
+              required={true}
               placeholder="Enter the User Name"
               name="user_name"
               autoComplete="false"
@@ -29,7 +29,7 @@ const Login = () => {
             <label>Password</label>
             <input
               type="password"
-              required="true"
+              required={true}
               placeholder="Enter the Password"
               name="password"
               autoComplete="false"
