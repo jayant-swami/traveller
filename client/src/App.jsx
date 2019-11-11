@@ -6,6 +6,7 @@ import Landing from "./components/Landing.jsx";
 import People from "./components/People.jsx";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
+import Home from "./components/Home.jsx"
 import NotFound from "./components/NotFound";
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
             <Route exact path="/" component={Landing}></Route>
             <Route exact path="/register" component={Register}></Route>
             <Route exact path="/login" component={Login}></Route>
+            <Route exact path="/home" component={Home}></Route>
             <Route exact path="/people" component={People}></Route>
             <Route component={NotFound}></Route>
           </Switch>

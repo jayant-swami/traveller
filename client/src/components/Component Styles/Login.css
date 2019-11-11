@@ -163,6 +163,11 @@
   opacity: 1;
 }
 
+.Btn-Login:disabled{
+  background-color: gray;
+  cursor: default;
+}
+
 .Login-Footer {
   margin: 10px 0px 10px 0px;
   text-align: center;
@@ -181,6 +186,11 @@
   font-size: 12px;
   color: purple;
   text-decoration: none;
+}
+
+.Login-Alert{
+  color: red;
+  float: right;
 }
 
 .Footer {

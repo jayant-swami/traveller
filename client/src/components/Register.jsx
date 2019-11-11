@@ -36,6 +36,10 @@ const Register = props => {
     }
   };
 
+  useEffect(()=> {
+    return props.clearSignup;
+  },[props.clearSignup])
+
   if (props.status === "SUCCESS") {
     return <Redirect to="/login"></Redirect>;
   } else {
