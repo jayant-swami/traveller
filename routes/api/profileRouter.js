@@ -35,7 +35,8 @@ router.put("/me", tokenAuth, (req, res) => {
           dob: req.body.dob,
           location: req.body.location,
           social: req.body.social,
-          places_travelled: req.body.places_travelled
+          places_travelled: req.body.places_travelled,
+          gender: req.body.gender
         },
         { new: true }
       )

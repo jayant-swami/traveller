@@ -40,7 +40,8 @@ router.post("/register", userValidation, (req, res) => {
               dob: "",
               location: "",
               social: [],
-              places_travelled: []
+              places_travelled: [],
+              gender: ""
             });
 
             newProfile
@@ -96,7 +97,7 @@ router.post("/login", (req, res) => {
     userModel
       .findOne(
         { user_name: req.body.user_name },
-        "email first_name last_name password"
+        "email first_name last_name password avatar"
       )
       .then(val => {
         if (val) {
@@ -122,7 +123,8 @@ router.post("/login", (req, res) => {
                         (response.user.email = val.email),
                         (response.user.first_name = val.first_name),
                         (response.user.last_name = val.last_name),
-                        (response.user.added_on = val.added_on);
+                        (response.user.added_on = val.added_on),
+                        (response.user.avatar = val.avatar);
                       res.send(response);
                     }
                   }

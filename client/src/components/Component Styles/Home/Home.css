@@ -1,0 +1,129 @@
+.Home{
+    display:grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(138, 94, 138)
+}
+
+.Home-Showcase{
+    grid-column: 2;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 0px 70px 0px;
+    box-shadow: 1px 1px 20px grey;
+    padding: 15px;
+    background-color: whitesmoke;
+}
+
+
+.WelcomeUser {
+    margin: 5px;
+    padding: 5px;
+    color: purple;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border-bottom: 1px solid rgb(209, 209, 209);
+    display: grid;
+    font-size: 24px;
+    text-shadow: 1px 1px 70px rgb(150, 69, 150);
+}
+
+.WelcomeUser-Head{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px,auto));
+}
+
+.CreatePost {
+    display: grid;
+    justify-self: stretch;
+    justify-content: stretch;
+    padding: 5px;
+    background-color: rgb(150, 69, 150);
+    border-radius: 8px;
+}
+
+.CreatePost-Form {
+    display: grid;
+    justify-content: stretch;
+    align-items: center;
+    background-color: rgb(150, 69, 150);
+    padding: 6px;
+    justify-self: stretch;
+}
+
+.CreatePost-Form-Element {
+    display: grid;
+    justify-self: stretch;
+    justify-content: stretch;
+    align-items: center;
+    margin: 2px;
+}
+
+
+.CreatePost-Form-Element input,textarea{
+    background-color: rgb(150, 69, 150);
+    border: none;
+    outline: none;
+    padding: 5px;
+    justify-self: stretch;
+    width: 100%;
+    color: white;
+    resize: none;
+}
+
+.CreatePost-Form-Element input::placeholder{
+    color: white;
+}
+
+.CreatePost-Form-Element textarea::placeholder{
+    color: white;
+}
+
+#Post-Title {
+        height: 25px;
+}
+
+#Post-Content {
+    border-top: 1px solid rgb(202, 202, 202);
+    height: 50px;
+}
+
+.WelcomeUser img {
+    height: 50px;
+    width: 50px;
+    align-self: center;
+    justify-self: right;
+}
+
+.CreatePost-Btn {
+display: grid;
+justify-self: center;
+margin:0px;
+padding: 0px;
+font-size: 24px;
+background-color: rgb(150, 69, 150);
+border:none;
+outline: none;
+cursor: pointer;
+color: white;
+text-shadow: 1px 1px 1px white;
+transition-property: text-shadow,opacity;
+transition-duration: 500ms;
+opacity: 1;
+}
+
+.CreatePost-Btn:disabled{
+    opacity: 0.4;
+}
+
+.CreatePost-Btn:hover {
+    text-shadow: 1px 1px 1px grey;
+}
+
+
+.Nav{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}

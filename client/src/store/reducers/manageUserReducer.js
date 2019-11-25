@@ -18,23 +18,26 @@ const initialState = {
     }
   },
 
-  authentication: {
-    token: localStorage.getItem('token'),
+  authorization: {
+    token: localStorage.getItem("token"),
     user: {
       user_name: "",
       email: "",
       first_name: "",
       last_name: "",
-      added_on: ""
+      added_on: "",
+      avatar: "default"
+    },
+    error: {
+      name: "",
+      msg: ""
     }
   }
-
 };
 
 const manageUserReducer = (state = initialState, action) => {
+
   if (action.type === "SIGNUP") {
-    console.log("call from manageUserReducer ");
-    console.log(action.payload);
     let newState = {
       ...state,
       signup: {
@@ -74,8 +77,6 @@ const manageUserReducer = (state = initialState, action) => {
     return newState;
   }
 
- 
-
   if (action.type === "LOGIN") {
     let newState = {
       ...state,
@@ -86,23 +87,9 @@ const manageUserReducer = (state = initialState, action) => {
           ...state.login.error,
           user_name: action.payload.error.user_name,
           password: action.payload.error.password
-        },
-        
-        },
-        authentication: {
-          ...state.authentication,
-          token: action.payload.token,
-            user: {
-              ...state.login.user,
-              user_name: action.payload.user.user_name,
-              email: action.payload.user.email,
-              first_name: action.payload.user.first_name,
-              last_name: action.payload.user.last_name,
-              added_on: action.payload.user.added_on
-          }
         }
-      };
-
+      }
+    };
 
     return newState;
   }
@@ -122,7 +109,55 @@ const manageUserReducer = (state = initialState, action) => {
     };
 
     return newState;
-  } else {
+  }
+
+  if (action.type === "AUTHORIZE_USER") {
+    let newState = {
+      ...state,
+      authorization: {
+        ...state.authorization,
+        token: localStorage.getItem("token"),
+        user: {
+          ...state.authorization.user,
+          user_name: action.payload.user.user_name,
+          email: action.payload.user.email,
+          first_name: action.payload.user.first_name,
+          last_name: action.payload.user.last_name,
+          added_on: action.payload.user.added_on,
+          avatar: action.payload.user.avatar
+        },
+        error: {
+          ...state.authorization.error,
+          name: action.payload.error.name,
+          msg: action.payload.error.msg
+        }
+      }
+    };
+    return newState;
+  } 
+  
+  if(action.type==="CLEAR_AUTHORIZATION")
+  {
+    let newState={
+      ...state,
+      authorization: {
+        token: "",
+        user: {
+          user_name: "",
+          email: "",
+          first_name: "",
+          last_name: "",
+          added_on: ""
+        },
+        error: {
+          name: "",
+          msg: ""
+        }
+      }
+    }
+    return newState;
+  }
+  else {
     return state;
   }
 };

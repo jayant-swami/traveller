@@ -11,7 +11,8 @@ const tokenAuth = (req, res, next) => {
       email: "",
       first_name: "",
       last_name: "",
-      added_on: ""
+      added_on: "",
+      avatar: ""
     },
     error: {
       msg: ""
@@ -22,17 +23,21 @@ const tokenAuth = (req, res, next) => {
     config.jwt.jwtSecret,
     (err, decoded) => {
       if (err) {
-        console.log(err);
-        res
-          .status(401)
-          .send(
-            "Token Error: Error occured while verifying token in token auth Middleware"
-          );
+        if(err.name==="JsonWebTokenError")
+        {
+          authentication.status="FAIL";
+          authentication.error=err;
+          res.send(authentication)
+        }
+        else{
+          console.log(err);
+          res.status(401).send("Error: An error occured while verifying token in tokenAuth middleware");
+        }
       } else {
         userModel
           .findOne(
             { _id: decoded.id },
-            "_id user_name email first_name last_name added_on"
+            "_id user_name email first_name last_name added_on avatar"
           )
           .then(userVal => {
             if (userVal) {
@@ -42,7 +47,8 @@ const tokenAuth = (req, res, next) => {
                 email: userVal.email,
                 first_name: userVal.first_name,
                 last_name: userVal.last_name,
-                added_on: userVal.added_on
+                added_on: userVal.added_on,
+                avatar: userVal.avatar
               };
               req.authentication=authentication;
               next();

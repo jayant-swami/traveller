@@ -1,30 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Nav from "./components/Nav.jsx";
 import Landing from "./components/Landing.jsx";
-import People from "./components/People.jsx";
 import Login from "./components/Login.jsx";
 import Register from "./components/Register.jsx";
-import Home from "./components/Home.jsx"
+import Home from "./components/Home/Home.jsx";
 import NotFound from "./components/NotFound";
+import setAuthHeader from "./utils/setAuthHeader";
+import { Provider } from "react-redux";
+import store from "./store/store";
+import manageUserActions from "./store/actions/manageUserActions";
+import PrivateRoute from "./components/PrivateRoute.jsx";
+import RestrictedRoute from "./components/RestrictedRoute.jsx"
+
+
+setAuthHeader(localStorage.getItem("token"));
+
 
 const App = () => {
+
+  useEffect(() => {
+    store.dispatch(manageUserActions.authUserAction());
+  }, []);
+
   return (
-       <Router>
+    <Provider store={store}>
+      <Router>
         <div className="App">
-          <Nav></Nav>
           <Switch>
-            <Route exact path="/" component={Landing}></Route>
-            <Route exact path="/register" component={Register}></Route>
-            <Route exact path="/login" component={Login}></Route>
-            <Route exact path="/home" component={Home}></Route>
-            <Route exact path="/people" component={People}></Route>
+            <RestrictedRoute exact path="/" component={Landing}></RestrictedRoute>
+            <RestrictedRoute exact path="/register" component={Register}></RestrictedRoute>
+            <RestrictedRoute exact path="/login" component={Login}></RestrictedRoute>
+            <PrivateRoute exact path="/home" component={Home}></PrivateRoute>
             <Route component={NotFound}></Route>
           </Switch>
         </div>
       </Router>
-    
+    </Provider>
   );
 };
 

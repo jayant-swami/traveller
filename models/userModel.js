@@ -9,7 +9,8 @@ const userSchema=new Schema({
     password: {type: String, required: true},
     added_on: {type: String, default: Date.now()},
     first_name: {type: String, default: "User"},
-    last_name: {type: String}    
+    last_name: {type: String},
+    avatar: {type: String, default: "default"}
 });
 
 module.exports= mongoose.model("users", userSchema);

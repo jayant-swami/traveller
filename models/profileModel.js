@@ -7,7 +7,7 @@ const profileSchema = mongoose.Schema({
     required: true,
     unique: true
   },
-  user_name: { type: String, required: true },
+  user_name: { type: String, required: true, unique: true},
   first_name: { type: String },
   last_name: { type: String },
   bio: { type: String },
@@ -22,7 +22,8 @@ const profileSchema = mongoose.Schema({
       year: { type: Number },
       month: { type: String }
     }
-  ]
+  ],
+  gender: {type: String}
 });
 
 module.exports = mongoose.model("profiles", profileSchema);

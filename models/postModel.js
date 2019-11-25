@@ -8,7 +8,7 @@ const postSchema = mongoose.Schema({
   },
   title: {type: String, required:true},
   content: { type: String, required: true },
-  likes: [{ type: mongoose.Schema.Types.ObjectId, ref:"users", required:true}],
+  likes: [{ type: String, required:true}],
   comments: [
       {
           user_id: {type: mongoose.Schema.Types.ObjectId, ref:"users", required: true},

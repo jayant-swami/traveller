@@ -1,0 +1,144 @@
+.Post{
+    display: grid;
+    align-items: center;
+    justify-content: stretch;
+    padding: 5px;
+    margin: 20px 0px 20px 0px;
+    border-radius: 2%;
+    animation: component-mount-post 0.5s;
+}
+
+@keyframes component-mount-post {
+    0% {
+      transform: scaleX(0);
+    }
+    100% {
+      transform: scaleX(1);
+    }
+  }
+
+
+.Post:hover{
+    display: grid;
+    align-items: center;
+    justify-content: stretch;
+    padding: 5px;
+    box-shadow: inset 10px 10px 90px rgb(221, 218, 218);
+    margin: 20px 0px 20px 0px;
+    transition-property: box-shadow;
+    transition-duration: 500ms;
+    transition-timing-function: linear;
+    
+}
+
+.Post-Head {
+    display: grid;
+    grid-template-columns: 1fr 3fr 6fr;
+    padding: 5px;
+}
+
+.Post-Head-Avatar {
+    grid-column: 1;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.Post-Head-Avatar img {
+    width: 50px;
+    height: 50px;
+}
+
+
+.Post-Head-Text {
+    grid-column: 2;
+    display: grid;
+    justify-content: left;
+}
+
+.Post-Head-Text-Username {
+
+    color: purple;
+    font-weight: 600;
+    font-size: 14px;
+    align-self: flex-end;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+}
+
+.Post-Head-Text-Date {
+
+    color: gray;
+    font-size: 11px;
+    align-self: flex-start;
+}
+
+.Post-Head button {
+    grid-column: 3;
+    font-size: 36px;
+    background: none;
+    border: 0px;
+    color: purple;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+    opacity: 0.75;
+    justify-self: right;
+    transition-property: opacity;
+    transition-duration: 500ms;
+}
+
+.Post-Head button:hover {
+    opacity: 1;
+}
+
+
+.Post-Content {
+    border-top: 1px solid rgb(194, 192, 192);
+    border-bottom: 1px solid rgb(194, 192, 192);
+    padding: 5px;
+
+}
+
+.Post-Content h1 {
+    padding: 5px;
+    color: purple;
+    font-size: 22px;
+    font-family: serif;
+    margin: 0px;
+}
+
+.Post-Content p {
+    color: black;
+    padding: 5px;
+    margin: 0px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: justify;
+}
+
+.Post-Footer {
+    padding: 5px;
+    display: grid;
+    align-items: center;
+}
+
+.Post-Footer span {
+    grid-row: 1;
+    font-size: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0px;
+    justify-self: left;
+}
+
+
+
+.Post-Footer a {
+    grid-row: 1;
+    font-size: 14px;
+    background: none;
+    border: 0px;
+    text-decoration: none;
+    padding: 0px;
+    margin: 0px;
+    justify-self: right;
+}

@@ -49,7 +49,7 @@ else{
       <div className="Landing-Bg"></div>
       <div className="Landing-Text">
         {finalText.map(text => (
-          <div className="Landing-Text-Element">
+          <div className="Landing-Text-Element" key={text.logo}>
             <span className="Landing-Text-Logo">{text.logo}</span>
             <span className="Landing-Text-Value">{text.text}</span>
           </div>

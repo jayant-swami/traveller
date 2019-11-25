@@ -150,7 +150,6 @@ const Register = props => {
                   newUser.user_name &&
                   newUser.email &&
                   newUser.first_name &&
-                  newUser.last_name &&
                   newUser.password
                 )
               }

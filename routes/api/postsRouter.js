@@ -15,7 +15,7 @@ router.get("/feed", tokenAuth, (req, res) => {
       )
       .populate({
         path: "user_id",
-        select: "user_name first_name last_name -_id"
+        select: "user_name first_name last_name avatar -_id"
       })
       .exec(function(err, postsVal) {
         if (err) {
@@ -88,7 +88,7 @@ router.post("/new", [tokenAuth, postValidation], (req, res) => {
       newPost
         .save()
         .then(postVal => {
-          res.send(postVal);
+          res.send(req.validation);
         })
         .catch(err => {
           console.log(err);
@@ -140,7 +140,7 @@ router.post("/like/:post_id", tokenAuth, async (req, res) => {
         console.log(postInstance.likes);
         let likedIndex = postInstance.likes.findIndex(
           element =>
-            element.toString() === req.authentication.user.id.toString()
+            element === req.authentication.user.user_name
         );
         console.log(likedIndex);
         if (likedIndex !== -1) {
@@ -148,7 +148,7 @@ router.post("/like/:post_id", tokenAuth, async (req, res) => {
           let updatedLikes = await postInstance.save();
           res.send(updatedLikes.likes);
         } else {
-          postInstance.likes.push(req.authentication.user.id);
+          postInstance.likes.push(req.authentication.user.user_name);
           let updatedLikes = await postInstance.save();
           res.send(updatedLikes.likes);
         }
