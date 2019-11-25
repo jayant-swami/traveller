@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../Component Styles/Home/Post.css";
+import feedPostsActions from "../../store/actions/feedPostsActions";
+import {connect} from "react-redux";
 
 const Post = props => {
 
@@ -26,6 +28,10 @@ const Post = props => {
 
   // console.log(props.postDate)
 
+  const handleLike= () => {
+    props.likePostAction({postId: props.postId, userName:props.currentUser})
+  }
+
   return (
     <div className="Post">
       <div className="Post-Head">
@@ -40,7 +46,7 @@ const Post = props => {
             {" posted on " + formatDate(props.postDate)}
           </span>
         </div>
-        <button>{likeButton}</button>
+        <button onClick={handleLike}>{likeButton}</button>
       </div>
       <div className="Post-Content">
         <h1>{props.postTitle}</h1>
@@ -55,4 +61,4 @@ const Post = props => {
   );
 };
 
-export default Post;
+export default connect(null,feedPostsActions)(Post);

@@ -54,13 +54,13 @@ router.get("/:post_id", tokenAuth, (req, res) => {
           console.log(err);
           res.send("Error: An error occured while getting the post.");
         } else if (postVal) {
-            let newPostVal = postVal.map(post => {
-                let filterComments = post.comments.filter(
-                  comment => comment.is_deleted === false
-                );
-                post.comments = filterComments;
-                return (newPost = post);
-              });
+          let newPostVal = postVal.map(post => {
+            let filterComments = post.comments.filter(
+              comment => comment.is_deleted === false
+            );
+            post.comments = filterComments;
+            return (newPost = post);
+          });
           res.send(newPostVal);
         } else {
           res.status(400).send("Could not find the post");
@@ -88,6 +88,11 @@ router.post("/new", [tokenAuth, postValidation], (req, res) => {
       newPost
         .save()
         .then(postVal => {
+          req.validation.post = {
+            ...postVal._doc,
+            avatar: req.authentication.user.avatar,
+            user_name: req.authentication.user.user_name
+          };
           res.send(req.validation);
         })
         .catch(err => {
@@ -139,18 +144,17 @@ router.post("/like/:post_id", tokenAuth, async (req, res) => {
       if (postInstance) {
         console.log(postInstance.likes);
         let likedIndex = postInstance.likes.findIndex(
-          element =>
-            element === req.authentication.user.user_name
+          element => element === req.authentication.user.user_name
         );
-        console.log(likedIndex);
+        // console.log(likedIndex);
         if (likedIndex !== -1) {
           postInstance.likes.splice(likedIndex, 1);
           let updatedLikes = await postInstance.save();
-          res.send(updatedLikes.likes);
+          res.send({status: "SUCCESS", postLikes: updatedLikes.likes});
         } else {
           postInstance.likes.push(req.authentication.user.user_name);
           let updatedLikes = await postInstance.save();
-          res.send(updatedLikes.likes);
+          res.send({status: "SUCCESS", postLikes: updatedLikes.likes});
         }
       } else {
         throw Error("Error: Post doesn't exist");

@@ -56,6 +56,17 @@ const feedPostsActions = {
     try {
       let res = await axios.post("/api/posts/new", body, header);
       if (res.data.status === "SUCCESS") {
+        let newPost={
+          post_id: res.data.post._id,
+          avatar: res.data.post.avatar,
+          userName: res.data.post.user_name,
+          postDate: new Date(res.data.post.posted_on),
+          postTitle: res.data.post.title,
+          postContent: res.data.post.content,
+          postLikes: [...res.data.post.likes],
+          comments: [...res.data.post.comments]
+        }
+        dispatch({type:"ADD_FEED",payload: newPost});
         dispatch({ type: "CHANGE_SPINNER_TEXT", payload: "SUCCESS..." });
         await timeout(1500);
         dispatch({ type: "TOGGLE_SPINNER", payload: false });
@@ -68,7 +79,38 @@ const feedPostsActions = {
         await timeout(1500);
         dispatch({ type: "TOGGLE_SPINNER", payload: false });
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: "CHANGE_SPINNER_TEXT",
+        payload: "Couldn't create post..."
+      });
+      await timeout(1500);
+      dispatch({ type: "TOGGLE_SPINNER", payload: false });
+    }
+  },
+
+  likePostAction: (post) => async dispatch => {
+
+    const header = {
+      "Content-Type": "application/json",
+    };
+    const url="/api/posts/like/" + post.postId;
+    try {
+      dispatch({type: "UPDATE_LIKES",payload: post});
+      let res= await axios.post(url,null,header);
+
+      if(res.data.status==="SUCCESS"){
+
+      }else{
+        throw Error("Error: An error occured while liking the post.")
+      }
+
+      
+    } catch (error) {
+      console.log(error);
+      dispatch({type: "UPDATE_LIKES",payload: post});
+    }
   }
 };
 

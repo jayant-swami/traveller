@@ -86,6 +86,7 @@
     justify-self: right;
     transition-property: opacity;
     transition-duration: 500ms;
+    outline: none;
 }
 
 .Post-Head button:hover {

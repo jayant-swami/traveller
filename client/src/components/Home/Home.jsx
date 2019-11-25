@@ -98,6 +98,7 @@ const Home = props => {
             postLikes={post.postLikes}
             comments={post.comments}
             currentUser={props.user.user_name}
+            postId={post.post_id}
           ></Post>
         ))}
       </div>
