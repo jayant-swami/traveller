@@ -12,6 +12,8 @@ import store from "./store/store";
 import manageUserActions from "./store/actions/manageUserActions";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import RestrictedRoute from "./components/RestrictedRoute.jsx"
+import People from "./components/Home/People.jsx";
+import Profile from "./components/Home/Profile.jsx";
 
 
 setAuthHeader(localStorage.getItem("token"));
@@ -32,6 +34,8 @@ const App = () => {
             <RestrictedRoute exact path="/register" component={Register}></RestrictedRoute>
             <RestrictedRoute exact path="/login" component={Login}></RestrictedRoute>
             <PrivateRoute exact path="/home" component={Home}></PrivateRoute>
+            <PrivateRoute exact path="/people" component={People}></PrivateRoute>
+            <PrivateRoute exact path="/profile" component={Profile}></PrivateRoute>
             <Route component={NotFound}></Route>
           </Switch>
         </div>

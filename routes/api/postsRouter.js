@@ -10,7 +10,7 @@ router.get("/feed", tokenAuth, (req, res) => {
     postModel
       .find(
         { is_deleted: false },
-        "posted_on user_id title content likes comments",
+        "posted_on user_id title content likes comments media",
         { skip: 0, limit: 20, sort: { posted_on: -1 } }
       )
       .populate({
@@ -43,7 +43,7 @@ router.get("/:post_id", tokenAuth, (req, res) => {
     postModel
       .find(
         { is_deleted: false, _id: req.params.post_id },
-        "posted_on user_id title content likes comments"
+        "posted_on user_id title content likes comments media"
       )
       .populate({
         path: "user_id",
@@ -73,6 +73,9 @@ router.get("/:post_id", tokenAuth, (req, res) => {
 
 // Create new Post
 router.post("/new", [tokenAuth, postValidation], (req, res) => {
+
+  console.log("Create Post Route")
+  console.log(req.body);
   if (req.authentication.status === "SUCCESS") {
     if (req.validation.status === "SUCCESS") {
       newPost = postModel({
@@ -82,7 +85,8 @@ router.post("/new", [tokenAuth, postValidation], (req, res) => {
         likes: [],
         comments: [],
         posted_on: Date.now(),
-        is_deleted: false
+        is_deleted: false,
+        media: req.body.media
       });
 
       newPost
@@ -146,12 +150,14 @@ router.post("/like/:post_id", tokenAuth, async (req, res) => {
         let likedIndex = postInstance.likes.findIndex(
           element => element === req.authentication.user.user_name
         );
-        // console.log(likedIndex);
+        console.log(likedIndex);
         if (likedIndex !== -1) {
+          console.log("cond1")
           postInstance.likes.splice(likedIndex, 1);
           let updatedLikes = await postInstance.save();
           res.send({status: "SUCCESS", postLikes: updatedLikes.likes});
         } else {
+          console.log("cond2")
           postInstance.likes.push(req.authentication.user.user_name);
           let updatedLikes = await postInstance.save();
           res.send({status: "SUCCESS", postLikes: updatedLikes.likes});

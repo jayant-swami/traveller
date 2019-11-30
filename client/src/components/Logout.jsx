@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
-import manageUserActions from "../store/actions/manageUserActions"
+import manageUserActions from "../store/actions/manageUserActions";
+import "./Component Styles/Logout.css";
+
 
 const Logout = (props) => {
 

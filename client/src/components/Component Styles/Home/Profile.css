@@ -1,0 +1,56 @@
+.Profile{
+    display:grid;
+    grid-template-columns: 1fr 10fr 1fr;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(137, 107, 147, 0.4);
+    box-shadow: inset 4px 4px 600px white
+}
+
+.quote{
+    grid-column: 2;
+    margin: auto auto 0px auto;
+    align-self: flex-end;
+    padding: 10px;
+    grid-row: 1;
+    font-size: 64px;
+    font-family: Brush Script MT, Brush Script Std, cursive;
+    color: purple;
+}
+.message{
+    grid-column: 2;
+    margin: 0px auto auto auto;
+    font-size: 14px;
+    padding: 10px;
+    font-family: cursive;
+    color: black;
+    text-shadow: 1px 1px 10px white;
+}
+
+.div{
+    grid-row: 1;
+    grid-column: 2;
+    margin: auto;
+    height: 20px;
+    width: 20px;
+    background-color: rgb(247, 84, 84);
+    box-shadow: 1px 1px 10px white;
+    border-radius: 50%;
+    animation: blink-circle 1s infinite alternate;
+}
+
+@keyframes blink-circle{
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+.Nav{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}

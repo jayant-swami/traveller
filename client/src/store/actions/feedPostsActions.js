@@ -28,7 +28,8 @@ const feedPostsActions = {
           postTitle: postVal.title,
           postContent: postVal.content,
           postLikes: [...postVal.likes],
-          comments: [...postVal.comments]
+          comments: [...postVal.comments],
+          media: postVal.media
         };
       });
 
@@ -52,10 +53,14 @@ const feedPostsActions = {
     const header = {
       "Content-Type": "application/json"
     };
-    const body = { title: post.post_title, content: post.post_content };
+    const body = { title: post.post_title, content: post.post_content , media:post.media };
+    console.log("createPostAction");
+    console.log(body);
     try {
       let res = await axios.post("/api/posts/new", body, header);
       if (res.data.status === "SUCCESS") {
+        console.log("Response from server")
+        console.log(res.data.post)
         let newPost={
           post_id: res.data.post._id,
           avatar: res.data.post.avatar,
@@ -64,7 +69,8 @@ const feedPostsActions = {
           postTitle: res.data.post.title,
           postContent: res.data.post.content,
           postLikes: [...res.data.post.likes],
-          comments: [...res.data.post.comments]
+          comments: [...res.data.post.comments],
+          media: res.data.post.media
         }
         dispatch({type:"ADD_FEED",payload: newPost});
         dispatch({ type: "CHANGE_SPINNER_TEXT", payload: "SUCCESS..." });
@@ -101,6 +107,7 @@ const feedPostsActions = {
       let res= await axios.post(url,null,header);
 
       if(res.data.status==="SUCCESS"){
+        console.log(res.data);
 
       }else{
         throw Error("Error: An error occured while liking the post.")

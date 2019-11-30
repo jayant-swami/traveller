@@ -38,3 +38,18 @@
     height: 100%;
     margin:0px;
 }
+
+.People{
+    grid-column: 1 / 4;
+    width: 100%;
+    height: 100%;
+    margin:0px;
+}
+
+
+.Profile{
+    grid-column: 1 / 4;
+    width: 100%;
+    height: 100%;
+    margin:0px;
+}

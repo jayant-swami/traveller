@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../Component Styles/Home/Post.css";
 import feedPostsActions from "../../store/actions/feedPostsActions";
 import {connect} from "react-redux";
+import Linkify from "react-linkify";
 
 const Post = props => {
 
@@ -25,10 +26,14 @@ const Post = props => {
     element => element === props.currentUser
   );
   let likeButton = likedIndex !== -1 ? "\u263B" : "\u263A";
+  let postImage = (props.postImageSource && <div className="postImage">
+  <img src={props.postImageSource} alt={props.postImageSource}></img>
+</div>)
 
   // console.log(props.postDate)
 
   const handleLike= () => {
+    console.log(props.currentUser);
     props.likePostAction({postId: props.postId, userName:props.currentUser})
   }
 
@@ -49,8 +54,9 @@ const Post = props => {
         <button onClick={handleLike}>{likeButton}</button>
       </div>
       <div className="Post-Content">
+      {postImage}
         <h1>{props.postTitle}</h1>
-        <p>{props.postContent}</p>
+        <Linkify><p>{props.postContent}</p></Linkify>
       </div>
       <div className="Post-Footer">
         <span>{props.postLikes.length + " likes"}</span>

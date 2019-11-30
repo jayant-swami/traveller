@@ -8,6 +8,7 @@ const postSchema = mongoose.Schema({
   },
   title: {type: String, required:true},
   content: { type: String, required: true },
+  media: {type: Object, default: { name: "", type: "", size: "", secure_url: "" }},
   likes: [{ type: String, required:true}],
   comments: [
       {

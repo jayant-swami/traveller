@@ -1,6 +1,10 @@
 const postModel=require("../models/postModel");
 
 const postValidation = (req, res, next) => {
+
+  // console.log("postValitation Middleware")
+  // console.log(req.body);
+
   let validation = {
     status: "SUCCESS",
     error: {
